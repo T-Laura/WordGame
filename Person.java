@@ -4,26 +4,26 @@ public class Person
    private String lastName;
    
    public Person(String name) {
-      firstName = name;
-      lastName = "";
+      this.setFirstName(name);
+      this.setLastName("");
    }
    
    public Person(String fName, String lName) {
-      firstName = fName;
-      lastName = lName;
+      this.setFirstName(fName);
+      this.setLastName(lName);
    }
    
-   public setFirstName(String name) {
-      firsName = name;
+   public void setFirstName(String name) {
+      firstName = name;
    }
-   public setLastName(String name) {
+   public void setLastName(String name) {
       lastName = name;
    }
    
-   public getFirstName() {
+   public String getFirstName() {
       return firstName;
    }
-   public getLastName() {
+   public String getLastName() {
       return lastName;
    }
 }
