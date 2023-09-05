@@ -2,7 +2,7 @@ import java.util.Random;
 
 public class Numbers
 {
-   private int randomNum;
+   private static int randomNum;
    
    public void setNumber(int num) {
       randomNum = num;
