@@ -10,6 +10,14 @@ public class Hosts extends Person
       super(fname, lname);
    }
    
+   public void setNumber(int num){
+      number.setNumber(num);
+   }
+   
+   public Numbers getNumber(){
+      return number;
+   }
+   
    public void randomizeNum(){
       number = new Numbers();
       number.generateNumber();
