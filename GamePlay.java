@@ -16,7 +16,7 @@ public class GamePlay
       host = new Hosts("Bob", "Barker");
       turn = new Turn();
       
-      for (int i = 0; i < 3; i++) {
+      for (int i = 0; i < 3; i++){
          System.out.println("What is player " + (i + 1) + "'s first name?");
          firstName = scnr.nextLine();
          System.out.print("Would you like to enter a last name for player " + (i + 1));

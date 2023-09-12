@@ -1,3 +1,4 @@
+import java.util.Random;
 import java.util.Scanner;
 
 public class Turn
@@ -5,25 +6,27 @@ public class Turn
    public boolean takeTurn(Players player, Hosts host, Scanner scnr){
       String guess;
       boolean numberGuessed;
+      Award prize;
+      Random rand = new Random();
       
       System.out.print(host.getFirstName() + " " + host.getLastName() + " says \"");
       System.out.print(player.getFirstName() + " " + player.getLastName() + ", ");
       System.out.print("enter your guess for the number I picked between 0 and 100.\"\n");
       guess = scnr.nextLine();
-      try {
+      try{
          numberGuessed = host.getNumber().compareNumber(Integer.parseInt(guess));
-         if (numberGuessed){
-            System.out.println("You win $1000");
-            player.setMoney(player.getMoney() + 1000);
+         if (rand.nextInt(5) == 0){
+            prize = new Physical();
+            player.setMoney(player.getMoney() + prize.displayWinnings(player, numberGuessed));
          }
          else{
-            System.out.println("You lose $100");
-            player.setMoney(player.getMoney() - 100);
+            prize = new Money();
+            player.setMoney(player.getMoney() + prize.displayWinnings(player, numberGuessed));
          }
          System.out.println(player);
          return numberGuessed;
       }
-      catch (Exception e) {
+      catch (Exception e){
          System.out.println("You must input a number between 0 and 100");
          return false;
       }
