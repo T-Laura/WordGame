@@ -30,7 +30,6 @@ public class GamePlay
          }
       }
       do{
-         System.out.println("Checkpoint 1 reached");
          host.setPhrase(scnr);
          numberGuessed = false;
          while (!numberGuessed){
