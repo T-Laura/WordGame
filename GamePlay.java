@@ -30,7 +30,8 @@ public class GamePlay
          }
       }
       do{
-         host.randomizeNum();
+         System.out.println("Checkpoint 1 reached");
+         host.setPhrase(scnr);
          numberGuessed = false;
          while (!numberGuessed){
             numberGuessed = turn.takeTurn(currentPlayers[turnNumber % 3], host, scnr);

@@ -1,6 +1,8 @@
+import java.util.Scanner;
+
 public class Hosts extends Person
 {
-   private Numbers number;
+   private Phrases phrase;
    
    public Hosts(String name){
       super(name);
@@ -10,16 +12,22 @@ public class Hosts extends Person
       super(fname, lname);
    }
    
-   public void setNumber(int num){
-      number.setNumber(num);
+   public void setPhrase(Scanner scnr){
+      boolean phraseSet = false;
+      while (!phraseSet){
+         try{
+            System.out.println("Enter the phrase for players to guess.");
+            phrase = new Phrases();
+            phrase.setPhrase(scnr.nextLine());
+            phraseSet = true;
+         }
+         catch (Exception e){
+            System.out.println(e.getMessage());
+         }
+      }
    }
    
-   public Numbers getNumber(){
-      return number;
-   }
-   
-   public void randomizeNum(){
-      number = new Numbers();
-      number.generateNumber();
+   public Phrases getPhrase(){
+      return phrase;
    }
 }

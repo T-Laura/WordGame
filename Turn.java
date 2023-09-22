@@ -5,29 +5,44 @@ public class Turn
 {
    public boolean takeTurn(Players player, Hosts host, Scanner scnr){
       String guess;
-      boolean numberGuessed;
+      int letterGuessed;
+      boolean correctGuess;
       Award prize;
       Random rand = new Random();
       
+      System.out.print("The phrase to guess is: " + host.getPhrase().getPlayingPhrase() + "\"\n");
       System.out.print(host.getFirstName() + " " + host.getLastName() + " says \"");
       System.out.print(player.getFirstName() + " " + player.getLastName() + ", ");
-      System.out.print("enter your guess for the number I picked between 0 and 100.\"\n");
+      System.out.print("enter your guess for a letter in my phrase\"\n");
       guess = scnr.nextLine();
-      try{
-         numberGuessed = host.getNumber().compareNumber(Integer.parseInt(guess));
+      try {
+         letterGuessed = host.getPhrase().findLetters(guess);
+         if (letterGuessed == 1 || letterGuessed == 2){
+            correctGuess = true;
+         }
+         else{
+            correctGuess = false;
+         }
          if (rand.nextInt(5) == 0){
             prize = new Physical();
-            player.setMoney(player.getMoney() + prize.displayWinnings(player, numberGuessed));
+            player.setMoney(player.getMoney() + prize.displayWinnings(player, correctGuess));
          }
          else{
             prize = new Money();
-            player.setMoney(player.getMoney() + prize.displayWinnings(player, numberGuessed));
+            player.setMoney(player.getMoney() + prize.displayWinnings(player, correctGuess));
          }
          System.out.println(player);
-         return numberGuessed;
+         if (letterGuessed == 1){
+            correctGuess = false;
+         }
+         return correctGuess;
+      }
+      catch (MultipleLettersException e){
+         System.out.println(e.getMessage());
+         return false;
       }
       catch (Exception e){
-         System.out.println("You must input a number between 0 and 100");
+         System.out.println(e.getMessage());
          return false;
       }
    }
