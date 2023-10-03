@@ -1,4 +1,5 @@
 import java.util.Random;
+import javax.swing.JOptionPane;
 
 public class Physical extends Award
 {
@@ -12,10 +13,12 @@ public class Physical extends Award
    @Override
    public int displayWinnings(Players player, boolean win){
       if (win){
-         System.out.println("Congrats " + player.getFirstName() + ", you just won a " + prizes[getRandomPrize()]);
+         JOptionPane.showMessageDialog(null, "Congrats " + player.getFirstName() + ", you just won a "
+            + prizes[getRandomPrize()]);
       }
       else{
-         System.out.println("Sorry " + player.getFirstName() + ", you could have won a " + prizes[getRandomPrize()]);
+         JOptionPane.showMessageDialog(null, "Sorry " + player.getFirstName() + ", you could have won a "
+            + prizes[getRandomPrize()]);
       }
       return 0;
    }

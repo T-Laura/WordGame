@@ -1,4 +1,5 @@
 import java.util.Random;
+import javax.swing.JOptionPane;
 
 public class Phrases
 {
@@ -32,7 +33,6 @@ public class Phrases
          throw(new Exception("You need to enter a letter"));
       }
       char letter = letterToCheck.charAt(0);
-      System.out.println("Well done, that letter is in the phrase");
       for (int i = 0; i < gamePhrase.length(); i++){
          if (Character.toLowerCase(gamePhrase.charAt(i)) == Character.toLowerCase(letter)
              && Character.toLowerCase(playingPhrase.charAt(i)) == '_'){
@@ -41,13 +41,16 @@ public class Phrases
          }
       }
       if (!altered){
+         JOptionPane.showMessageDialog(null, "Sorry, but that letter isn't in the phrase.");
          return 0;
       }
       else if (playingPhrase.toString().contains("_")){
+         JOptionPane.showMessageDialog(null, "Well done, that letter is in the phrase.");
          return 1;
       }
       else{
-         System.out.println("Congrats, you solved the puzzle");
+         JOptionPane.showMessageDialog(null, "Congrats, you solved the puzzle."
+            + " The phrase was: " + gamePhrase);
          return 2;
       }
    }

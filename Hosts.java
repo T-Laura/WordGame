@@ -1,4 +1,4 @@
-import java.util.Scanner;
+import javax.swing.JOptionPane;
 
 public class Hosts extends Person
 {
@@ -12,17 +12,16 @@ public class Hosts extends Person
       super(fname, lname);
    }
    
-   public void setPhrase(Scanner scnr){
+   public void setPhrase(){
       boolean phraseSet = false;
       while (!phraseSet){
          try{
-            System.out.println("Enter the phrase for players to guess.");
             phrase = new Phrases();
-            phrase.setPhrase(scnr.nextLine());
+            phrase.setPhrase(JOptionPane.showInputDialog(null, "Enter the phrase for players to guess."));
             phraseSet = true;
          }
          catch (Exception e){
-            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(null, e.getMessage());
          }
       }
    }
