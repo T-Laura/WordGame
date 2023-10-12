@@ -1,5 +1,5 @@
 import java.util.Random;
-import javax.swing.JOptionPane;
+import javax.swing.*;
 
 public class Phrases
 {
@@ -23,7 +23,7 @@ public class Phrases
       }
    }
    
-   public int findLetters(String letterToCheck) throws MultipleLettersException, Exception{
+   public int findLetters(String letterToCheck, JLabel messagesText) throws MultipleLettersException, Exception{
       boolean altered = false;
       
       if (letterToCheck.length() != 1){
@@ -41,15 +41,15 @@ public class Phrases
          }
       }
       if (!altered){
-         JOptionPane.showMessageDialog(null, "Sorry, but that letter isn't in the phrase.");
+         messagesText.setText(messagesText.getText() + "\nSorry, but that letter isn't in the phrase.");
          return 0;
       }
       else if (playingPhrase.toString().contains("_")){
-         JOptionPane.showMessageDialog(null, "Well done, that letter is in the phrase.");
+         messagesText.setText(messagesText.getText() + "\nWell done, that letter is in the phrase.");
          return 1;
       }
       else{
-         JOptionPane.showMessageDialog(null, "Congrats, you solved the puzzle."
+         messagesText.setText(messagesText.getText() + "\nCongrats, you solved the puzzle."
             + " The phrase was: " + gamePhrase);
          return 2;
       }

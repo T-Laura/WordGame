@@ -2,7 +2,7 @@ import javax.swing.JOptionPane;
 
 public class Hosts extends Person
 {
-   private Phrases phrase;
+   private Phrases phrase = null;
    
    public Hosts(String name){
       super(name);

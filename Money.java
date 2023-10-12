@@ -1,15 +1,15 @@
-import javax.swing.JOptionPane;
+import javax.swing.*;
 
 public class Money extends Award
 {
    @Override
-   public int displayWinnings(Players player, boolean win){
+   public int displayWinnings(Players player, boolean win, JLabel messagesText){
       if (win){
-         JOptionPane.showMessageDialog(null, "Congrats " + player.getFirstName() + ", you won $500");
+         messagesText.setText(messagesText.getText() + "\nCongrats " + player.getFirstName() + ", you won $500");
          return 500;
       }
       else{
-         JOptionPane.showMessageDialog(null, "Sorry " + player.getFirstName() + ", you lost $200");
+         messagesText.setText(messagesText.getText() + "\nSorry " + player.getFirstName() + ", you lost $200");
          return -200;
       }
    }

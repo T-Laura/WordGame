@@ -1,9 +1,9 @@
 import java.util.Random;
-import javax.swing.JOptionPane;
+import javax.swing.*;
 
 public class Turn
 {
-   public boolean takeTurn(Players player, Hosts host){
+   public boolean takeTurn(Players player, Hosts host, JLabel messagesText){
       String guess;
       int letterGuessed;
       boolean correctGuess;
@@ -15,7 +15,7 @@ public class Turn
          + player.getFirstName() + " " + player.getLastName() + ", "
          + "enter your guess for a letter in my phrase\"");
       try {
-         letterGuessed = host.getPhrase().findLetters(guess);
+         letterGuessed = host.getPhrase().findLetters(guess, messagesText);
          if (letterGuessed == 1 || letterGuessed == 2){
             correctGuess = true;
          }
@@ -24,24 +24,24 @@ public class Turn
          }
          if (rand.nextInt(5) == 0){
             prize = new Physical();
-            player.setMoney(player.getMoney() + prize.displayWinnings(player, correctGuess));
+            player.setMoney(player.getMoney() + prize.displayWinnings(player, correctGuess, messagesText));
          }
          else{
             prize = new Money();
-            player.setMoney(player.getMoney() + prize.displayWinnings(player, correctGuess));
+            player.setMoney(player.getMoney() + prize.displayWinnings(player, correctGuess, messagesText));
          }
          if (letterGuessed == 1){
             correctGuess = false;
          }
-         JOptionPane.showMessageDialog(null, player);
+         messagesText.setText(messagesText.getText() + "\n" + player);
          return correctGuess;
       }
       catch (MultipleLettersException e){
-         JOptionPane.showMessageDialog(null, e.getMessage());
+         messagesText.setText(messagesText.getText() + "\n" + e.getMessage());
          return false;
       }
       catch (Exception e){
-         JOptionPane.showMessageDialog(null, e.getMessage());
+         messagesText.setText(messagesText.getText() + "\n" + e.getMessage());
          return false;
       }
    }
