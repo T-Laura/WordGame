@@ -83,17 +83,17 @@ public class GUI extends JFrame implements ActionListener
    
    /*
       Recieves actions from buttons
-      addPlayerMenuItem (): Adds a player to currentPlayers array and increases currentPlayerCount
-      changeHostMenuItem (): Sets a new host name and updates host text on GUI
-      setPhraseMenuItem (): Calls Hosts.setPhrase() and sets phraseGuessed to false
-      takeTurnButton (): Calls Turn.takeTurn() and if phrase is fully guessed asks if players want to play again
-      saveMessagesCheckbox (): Inverts state of saveMessages boolean
-      layoutMenuItem (): Opens JOptionPane with reasoning for choosing the layout for the GUI
+      addPlayerMenuItem (100): Adds a player to currentPlayers array and increases currentPlayerCount
+      changeHostMenuItem (111): Sets a new host name and updates host text on GUI
+      setPhraseMenuItem (123): Calls Hosts.setPhrase() and sets phraseGuessed to false
+      takeTurnButton (133): Calls Turn.takeTurn() and if phrase is fully guessed asks if players want to play again
+      saveMessagesCheckbox (150): Inverts state of saveMessages boolean
+      layoutMenuItem (153): Opens JOptionPane with reasoning for choosing the layout for the GUI
       After every ActionEvent when applicable:
-      • () Updates player list on GUI
-      • () Sets currentTurn back to 0 if it reaches currentPlayerCount
-      • () Shows the next player to take turn
-      • () Updates phrase on GUI
+      • (156) Updates player list on GUI
+      • (162) Sets currentTurn back to 0 if it reaches currentPlayerCount
+      • (165) Shows the next player to take turn
+      • (170) Updates phrase on GUI
    */
    public void actionPerformed(ActionEvent e){
       Object source = e.getSource();
@@ -111,7 +111,13 @@ public class GUI extends JFrame implements ActionListener
       else if (source == changeHostMenuItem){
          String hostFirstName = JOptionPane.showInputDialog(null, "What is the host's first name?");
          String hostLastName = JOptionPane.showInputDialog(null, "What is the host's last name?");
-         currentHost = new Hosts(hostFirstName, hostLastName);
+         if (currentHost == null){
+            currentHost = new Hosts(hostFirstName, hostLastName);
+         }
+         else{
+            currentHost.setFirstName(hostFirstName);
+            currentHost.setLastName(hostLastName);
+         }
          hostText.setText("Host: " + currentHost.getFirstName() + " " + currentHost.getLastName());
       }
       else if (source == setPhraseMenuItem){
@@ -163,10 +169,6 @@ public class GUI extends JFrame implements ActionListener
       
       if (currentHost != null && currentHost.getPhrase() != null){
          playingPhraseText.setText("Phrase: " + currentHost.getPhrase().getPlayingPhrase());
-      }
-      else if (currentHost != null && currentHost.getPhrase() == null){
-         playingPhraseText.setText("Phrase: ");
-         messagesText.setText("");
       }
    }
    
