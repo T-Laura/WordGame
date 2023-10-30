@@ -1,9 +1,12 @@
 import java.util.Random;
 import javax.swing.*;
+import java.io.*;
+import java.awt.*;
+import java.awt.event.*;
 
 public class Turn
 {
-   public boolean takeTurn(Players player, Hosts host, JLabel messagesText){
+   public boolean takeTurn(Players player, Hosts host, JLabel messagesText, JLabel prizeImage){
       String guess;
       int letterGuessed;
       boolean correctGuess;
@@ -24,11 +27,11 @@ public class Turn
          }
          if (rand.nextInt(5) == 0){
             prize = new Physical();
-            player.setMoney(player.getMoney() + prize.displayWinnings(player, correctGuess, messagesText));
+            player.setMoney(player.getMoney() + prize.displayWinnings(player, correctGuess, messagesText, prizeImage));
          }
          else{
             prize = new Money();
-            player.setMoney(player.getMoney() + prize.displayWinnings(player, correctGuess, messagesText));
+            player.setMoney(player.getMoney() + prize.displayWinnings(player, correctGuess, messagesText, prizeImage));
          }
          if (letterGuessed == 1){
             correctGuess = false;
